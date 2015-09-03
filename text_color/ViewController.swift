@@ -19,6 +19,7 @@ class ViewController: UIViewController, UITextViewDelegate {
         super.viewDidLoad()
         setUpHighLighter()
         myTextView.delegate = self
+        
     }
     
     func setUpHighLighter() {
@@ -42,15 +43,19 @@ class ViewController: UIViewController, UITextViewDelegate {
     }
     
     func textViewDidChange(textView: UITextView) {
+        let currentRange = myTextView.selectedRange
         syntaxHighLighter.run(myTextView.text) { (finished) -> Void in
             self.myTextView.attributedText = self.syntaxHighLighter.highlightedString
+            self.myTextView.selectedRange = currentRange
         }
+        
     }
 
     @IBAction func editingChanged(sender: UITextField) {
-        
+        let currentRange = myTextfield.selectedTextRange
         syntaxHighLighter.run(myTextfield.text) { (finished) -> Void in
             self.myTextfield.attributedText = self.syntaxHighLighter.highlightedString
+            self.myTextfield.selectedTextRange = currentRange
         }
     }
 }
