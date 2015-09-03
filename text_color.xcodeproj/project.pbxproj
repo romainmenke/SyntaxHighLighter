@@ -14,6 +14,7 @@
 		05A1629A1B97769E00E4AD48 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05A162981B97769E00E4AD48 /* LaunchScreen.storyboard */; };
 		05A162A51B97769E00E4AD48 /* text_colorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A162A41B97769E00E4AD48 /* text_colorTests.swift */; };
 		05A162B01B97769E00E4AD48 /* text_colorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A162AF1B97769E00E4AD48 /* text_colorUITests.swift */; };
+		05FDCAA11B9886C9000D4492 /* HighLighter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FDCAA01B9886C9000D4492 /* HighLighter.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		05A162AB1B97769E00E4AD48 /* text_colorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = text_colorUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		05A162AF1B97769E00E4AD48 /* text_colorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = text_colorUITests.swift; sourceTree = "<group>"; };
 		05A162B11B97769E00E4AD48 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		05FDCAA01B9886C9000D4492 /* HighLighter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighLighter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +99,7 @@
 		05A1628E1B97769E00E4AD48 /* text_color */ = {
 			isa = PBXGroup;
 			children = (
+				05FDCAA01B9886C9000D4492 /* HighLighter.swift */,
 				05A1628F1B97769E00E4AD48 /* AppDelegate.swift */,
 				05A162911B97769E00E4AD48 /* ViewController.swift */,
 				05A162931B97769E00E4AD48 /* Main.storyboard */,
@@ -256,6 +259,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				05A162921B97769E00E4AD48 /* ViewController.swift in Sources */,
+				05FDCAA11B9886C9000D4492 /* HighLighter.swift in Sources */,
 				05A162901B97769E00E4AD48 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -483,6 +487,7 @@
 				05A162B61B97769E00E4AD48 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		05A162B71B97769E00E4AD48 /* Build configuration list for PBXNativeTarget "text_colorTests" */ = {
 			isa = XCConfigurationList;
@@ -491,6 +496,7 @@
 				05A162B91B97769E00E4AD48 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		05A162BA1B97769E00E4AD48 /* Build configuration list for PBXNativeTarget "text_colorUITests" */ = {
 			isa = XCConfigurationList;
@@ -499,6 +505,7 @@
 				05A162BC1B97769E00E4AD48 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
