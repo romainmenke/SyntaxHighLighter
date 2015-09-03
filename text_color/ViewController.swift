@@ -8,15 +8,17 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITextViewDelegate {
 
     @IBOutlet weak var myTextfield: UITextField!
+    @IBOutlet weak var myTextView: UITextView!
     
     var syntaxHighLighter : HighLighter!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpHighLighter()
+        myTextView.delegate = self
     }
     
     func setUpHighLighter() {
@@ -37,6 +39,12 @@ class ViewController: UIViewController {
         
         syntaxHighLighter = HighLighter(syntaxDictionairy_I: dictionairy)
         
+    }
+    
+    func textViewDidChange(textView: UITextView) {
+        syntaxHighLighter.run(myTextView.text) { (finished) -> Void in
+            self.myTextView.attributedText = self.syntaxHighLighter.highlightedString
+        }
     }
 
     @IBAction func editingChanged(sender: UITextField) {

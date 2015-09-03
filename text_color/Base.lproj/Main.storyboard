@@ -27,16 +27,28 @@
                                     <action selector="editingChanged:" destination="BYZ-38-t0r" eventType="editingChanged" id="1by-lg-VSc"/>
                                 </connections>
                             </textField>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="bIf-95-XQW">
+                                <rect key="frame" x="40" y="275" width="520" height="305"/>
+                                <animations/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="bIf-95-XQW" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="3zr-or-N7R"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="bIf-95-XQW" secondAttribute="bottom" constant="20" id="7Mh-vp-cUN"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ZRU-Sb-IQH" secondAttribute="trailing" constant="20" id="Pgc-cW-tx6"/>
+                            <constraint firstItem="bIf-95-XQW" firstAttribute="width" secondItem="ZRU-Sb-IQH" secondAttribute="width" id="QCh-gi-eyY"/>
+                            <constraint firstItem="bIf-95-XQW" firstAttribute="top" secondItem="ZRU-Sb-IQH" secondAttribute="bottom" constant="75" id="QWc-mk-5FX"/>
                             <constraint firstItem="ZRU-Sb-IQH" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="20" id="mOo-lP-bgt"/>
                             <constraint firstItem="ZRU-Sb-IQH" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="150" id="qFD-d9-kxh"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="myTextView" destination="bIf-95-XQW" id="Qnh-ap-oFI"/>
                         <outlet property="myTextfield" destination="ZRU-Sb-IQH" id="p1E-7K-uFK"/>
                     </connections>
                 </viewController>
