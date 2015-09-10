@@ -50,7 +50,7 @@ class HighLighter {
     var highlightedString : NSMutableAttributedString = NSMutableAttributedString()
     var syntaxDictionairy : SyntaxDictionairy
     
-    var highlighting : Bool = false
+    private var running : Bool = false
     
     init (syntaxDictionairy_I : SyntaxDictionairy) {
         
@@ -60,12 +60,12 @@ class HighLighter {
     
     func run(string : String?, completion: (finished: Bool) -> Void) {
         
-        if highlighting == true {
+        if running == true {
             print("double action")
             return
         }
         
-        highlighting = true
+        running = true
         
         ranges = []
         highlightedString = NSMutableAttributedString()
@@ -108,7 +108,7 @@ class HighLighter {
             }
             
             dispatch_sync(dispatch_get_main_queue()) { () -> Void in
-                self.highlighting = false
+                self.running = false
                 completion(finished: true)
             }
         }
