@@ -14,7 +14,7 @@
 		05A1629A1B97769E00E4AD48 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05A162981B97769E00E4AD48 /* LaunchScreen.storyboard */; };
 		05A162A51B97769E00E4AD48 /* text_colorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A162A41B97769E00E4AD48 /* text_colorTests.swift */; };
 		05A162B01B97769E00E4AD48 /* text_colorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A162AF1B97769E00E4AD48 /* text_colorUITests.swift */; };
-		05FDCAA11B9886C9000D4492 /* HighLighter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FDCAA01B9886C9000D4492 /* HighLighter.swift */; settings = {ASSET_TAGS = (); }; };
+		05FDCAA11B9886C9000D4492 /* HighLighter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FDCAA01B9886C9000D4492 /* HighLighter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -190,6 +190,7 @@
 		05A162841B97769D00E4AD48 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0710;
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "menke dev";
 				TargetAttributes = {
