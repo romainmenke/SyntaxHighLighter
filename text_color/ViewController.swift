@@ -50,6 +50,13 @@ class ViewController: UIViewController, UITextViewDelegate {
         }
         
     }
+    
+    // in case of weird cursor movements (only one case)
+//    func textViewDidChangeSelection(textView: UITextView) {
+//
+//        print("selection changed: \(myTextView.selectedTextRange!)")
+//        
+//    }
 
     @IBAction func editingChanged(sender: UITextField) {
         let currentRange = myTextfield.selectedTextRange
