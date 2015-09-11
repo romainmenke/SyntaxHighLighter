@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8187.4" systemVersion="15A279b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9046" systemVersion="15A282b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8151.3"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9035"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZRU-Sb-IQH">
-                                <rect key="frame" x="40" y="170" width="520" height="30"/>
+                                <rect key="frame" x="40" y="40" width="520" height="30"/>
                                 <animations/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -28,7 +28,7 @@
                                 </connections>
                             </textField>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="bIf-95-XQW">
-                                <rect key="frame" x="40" y="275" width="520" height="305"/>
+                                <rect key="frame" x="40" y="90" width="520" height="490"/>
                                 <animations/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -42,9 +42,9 @@
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="bIf-95-XQW" secondAttribute="bottom" constant="20" id="7Mh-vp-cUN"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ZRU-Sb-IQH" secondAttribute="trailing" constant="20" id="Pgc-cW-tx6"/>
                             <constraint firstItem="bIf-95-XQW" firstAttribute="width" secondItem="ZRU-Sb-IQH" secondAttribute="width" id="QCh-gi-eyY"/>
-                            <constraint firstItem="bIf-95-XQW" firstAttribute="top" secondItem="ZRU-Sb-IQH" secondAttribute="bottom" constant="75" id="QWc-mk-5FX"/>
+                            <constraint firstItem="bIf-95-XQW" firstAttribute="top" secondItem="ZRU-Sb-IQH" secondAttribute="bottom" constant="20" id="QWc-mk-5FX"/>
                             <constraint firstItem="ZRU-Sb-IQH" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="20" id="mOo-lP-bgt"/>
-                            <constraint firstItem="ZRU-Sb-IQH" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="150" id="qFD-d9-kxh"/>
+                            <constraint firstItem="ZRU-Sb-IQH" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="20" id="qFD-d9-kxh"/>
                         </constraints>
                     </view>
                     <connections>
