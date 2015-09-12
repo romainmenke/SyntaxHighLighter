@@ -60,7 +60,13 @@ class ViewController: UIViewController, UITextViewDelegate {
 
     @IBAction func editingChanged(sender: UITextField) {
         let currentRange = myTextfield.selectedTextRange
+        
         syntaxHighLighter.run(myTextfield.text) { (finished) -> Void in
+            
+            guard let textInUITextField = self.myTextfield.attributedText where textInUITextField.length == self.syntaxHighLighter.highlightedString.length else {
+                return
+            }
+            
             self.myTextfield.attributedText = self.syntaxHighLighter.highlightedString
             self.myTextfield.selectedTextRange = currentRange
         }
