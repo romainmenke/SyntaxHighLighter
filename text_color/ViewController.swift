@@ -43,8 +43,16 @@ class ViewController: UIViewController, UITextViewDelegate {
     }
     
     func textViewDidChange(textView: UITextView) {
+        
         let currentRange = myTextView.selectedRange
+        
         syntaxHighLighter.run(myTextView.text) { (finished) -> Void in
+            
+            // if the highlighter was slower than typing, ABORT
+            guard let textInUITextView = self.myTextfield.attributedText where textInUITextView.length == self.syntaxHighLighter.highlightedString.length else {
+                return
+            }
+            
             self.myTextView.attributedText = self.syntaxHighLighter.highlightedString
             self.myTextView.selectedRange = currentRange
         }
@@ -59,6 +67,7 @@ class ViewController: UIViewController, UITextViewDelegate {
 //    }
 
     @IBAction func editingChanged(sender: UITextField) {
+        
         let currentRange = myTextfield.selectedTextRange
         
         syntaxHighLighter.run(myTextfield.text) { (finished) -> Void in
