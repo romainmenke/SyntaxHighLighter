@@ -15,6 +15,7 @@
 		05A162A51B97769E00E4AD48 /* text_colorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A162A41B97769E00E4AD48 /* text_colorTests.swift */; };
 		05A162B01B97769E00E4AD48 /* text_colorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A162AF1B97769E00E4AD48 /* text_colorUITests.swift */; };
 		05FDCAA11B9886C9000D4492 /* HighLighter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FDCAA01B9886C9000D4492 /* HighLighter.swift */; };
+		05FEC0971BA5A9CB00B8631C /* TicketMan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FEC0961BA5A9CB00B8631C /* TicketMan.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		05A162AF1B97769E00E4AD48 /* text_colorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = text_colorUITests.swift; sourceTree = "<group>"; };
 		05A162B11B97769E00E4AD48 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		05FDCAA01B9886C9000D4492 /* HighLighter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighLighter.swift; sourceTree = "<group>"; };
+		05FEC0961BA5A9CB00B8631C /* TicketMan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TicketMan.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +102,7 @@
 			isa = PBXGroup;
 			children = (
 				05FDCAA01B9886C9000D4492 /* HighLighter.swift */,
+				05FEC0961BA5A9CB00B8631C /* TicketMan.swift */,
 				05A1628F1B97769E00E4AD48 /* AppDelegate.swift */,
 				05A162911B97769E00E4AD48 /* ViewController.swift */,
 				05A162931B97769E00E4AD48 /* Main.storyboard */,
@@ -262,6 +265,7 @@
 			files = (
 				05A162921B97769E00E4AD48 /* ViewController.swift in Sources */,
 				05FDCAA11B9886C9000D4492 /* HighLighter.swift in Sources */,
+				05FEC0971BA5A9CB00B8631C /* TicketMan.swift in Sources */,
 				05A162901B97769E00E4AD48 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -45,9 +45,9 @@ class SyntaxRange {
 class HighLighter {
     
     private var ranges : [SyntaxRange] = [] // array of ranges and colors
-    private var running : Bool = false // prevent duplicate execution
+    private var ticketMan = TicketMan() // prevent duplicate execution
     
-    var highlightedString : NSMutableAttributedString = NSMutableAttributedString() // the resulting string
+    var highlightedString : NSMutableAttributedString? // the resulting string
     var syntaxDictionairy : SyntaxDictionairy // the collection of words and colors
     
     init (syntaxDictionairy_I : SyntaxDictionairy) {
@@ -57,18 +57,14 @@ class HighLighter {
     }
     
     func run(optionalString : String?, completion: (finished: Bool) -> Void) {
-        // escape early when it is already running
-        if running == true {
-            print("double action")
-            return
-        }
         // string is empty
         guard let string = optionalString where string != "" else {
             print("empty string")
             return
         }
         
-        running = true // now we are running
+        // but it on the stack (do this on the main queue)
+        let ticket = ticketMan.ticket
         
         // move to background qeue to prevent UI lock up with a big syntaxDictionairy.
         let qualityOfServiceClass = QOS_CLASS_DEFAULT
@@ -83,6 +79,13 @@ class HighLighter {
             
             // go over the entire syntaxDictionairy
             for i in 0..<self.syntaxDictionairy.collections.count {
+                
+                // validate ticket each pass
+                if self.ticketMan.validateTicket(ticket) == false {
+                    self.ticketMan.ripTicket(ticket)
+                    self.highlightedString = nil
+                    return
+                }
                 
                 for iB in 0..<self.syntaxDictionairy.collections[i].wordCollection.count {
                     
@@ -104,18 +107,26 @@ class HighLighter {
                 }
             }
             
+            
+            // something went very wrong. Prevent crash
+            guard let unwrHighlightedString = self.highlightedString else {
+                self.ticketMan.ripTicket(ticket)
+                return
+            }
+            
             // use the saved ranged to color the full string step by step.
             for i in 0..<self.ranges.count {
                 
-                self.highlightedString.addAttribute(NSForegroundColorAttributeName, value: self.ranges[i].color, range: self.ranges[i].range)
+                unwrHighlightedString.addAttribute(NSForegroundColorAttributeName, value: self.ranges[i].color, range: self.ranges[i].range)
                 
             }
+            
+            self.highlightedString = unwrHighlightedString
             
             
             dispatch_sync(dispatch_get_main_queue()) { () -> Void in
                 
-                // alert view that the highlighting is done.
-                self.running = false
+                self.ticketMan.ripTicket(ticket)
                 completion(finished: true)
             }
         }

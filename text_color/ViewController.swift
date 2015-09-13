@@ -48,8 +48,13 @@ class ViewController: UIViewController, UITextViewDelegate {
         
         syntaxHighLighter.run(myTextView.text) { (finished) -> Void in
             
+            // check highlightedString for nil
+            guard let unwrHighlightedString = self.syntaxHighLighter.highlightedString else {
+                return
+            }
+            
             // if the highlighter was slower than typing, ABORT
-            guard let textInUITextView = self.myTextfield.attributedText where textInUITextView.length == self.syntaxHighLighter.highlightedString.length else {
+            guard let textInUITextView = self.myTextfield.attributedText where textInUITextView.length == unwrHighlightedString.length else {
                 return
             }
             
@@ -72,8 +77,13 @@ class ViewController: UIViewController, UITextViewDelegate {
         
         syntaxHighLighter.run(myTextfield.text) { (finished) -> Void in
             
+            // check highlightedString for nil
+            guard let unwrHighlightedString = self.syntaxHighLighter.highlightedString else {
+                return
+            }
+            
             // if the highlighter was slower than typing, ABORT
-            guard let textInUITextField = self.myTextfield.attributedText where textInUITextField.length == self.syntaxHighLighter.highlightedString.length else {
+            guard let textInUITextField = self.myTextfield.attributedText where textInUITextField.length == unwrHighlightedString.length else {
                 return
             }
             
