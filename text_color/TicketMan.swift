@@ -22,18 +22,12 @@ class TicketMan {
         }
     }
     
-    func ripTicket(ticket : Int) -> Bool {
+    func ripTicket(ticket : Int) {
         
         ticketStack -= 1
         
         if ticketStack == 0 {
             ticketCounter = 0
-        }
-        
-        if ticketStack == 0 {
-            return true
-        } else {
-            return false
         }
     }
     

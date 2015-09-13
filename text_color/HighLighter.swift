@@ -66,6 +66,7 @@ class HighLighter {
         // but it on the stack (do this on the main queue)
         let ticket = ticketMan.ticket
         
+        
         // move to background qeue to prevent UI lock up with a big syntaxDictionairy.
         let qualityOfServiceClass = QOS_CLASS_DEFAULT
         let backgroundQueue = dispatch_get_global_queue(qualityOfServiceClass, 0)
@@ -80,7 +81,7 @@ class HighLighter {
             // go over the entire syntaxDictionairy
             for i in 0..<self.syntaxDictionairy.collections.count {
                 
-                // validate ticket each pass
+                // validate ticket each pass, put these inside expensive loops
                 if self.ticketMan.validateTicket(ticket) == false {
                     self.ticketMan.ripTicket(ticket)
                     self.highlightedString = nil
