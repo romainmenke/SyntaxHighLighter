@@ -34,7 +34,6 @@ class TicketMan {
     func validateTicket(ticket: Int) -> Bool {
         
         if ticket == ticketCounter {
-            print(ticket)
             return true
         } else {
             ticketStack -= 1
