@@ -36,7 +36,6 @@ class TicketMan {
         if ticket == ticketCounter {
             return true
         } else {
-            ticketStack -= 1
             return false
         }
     }
