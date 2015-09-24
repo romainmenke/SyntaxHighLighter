@@ -56,80 +56,82 @@ class HighLighter {
         
     }
     
-    func run(optionalString : String?, completion: (finished: Bool) -> Void) {
-        // string is empty
-        guard let string = optionalString where string != "" else {
-            print("empty string")
+    func run(string string_I: String?, completion: (finished: Bool) -> Void) {
+        guard let unwrString_I = string_I where unwrString_I != "" else {
             return
         }
         
-        // but it on the stack (do this on the main queue)
-        let ticket = ticketMan.ticket
+        let ticket = self.ticketMan.ticket
         
-        
-        // move to background qeue to prevent UI lock up with a big syntaxDictionairy.
-        let qualityOfServiceClass = QOS_CLASS_DEFAULT
-        let backgroundQueue = dispatch_get_global_queue(qualityOfServiceClass, 0)
-        dispatch_async(backgroundQueue) { () -> Void in
+        ticketMan.backgroundOperation({ () -> () in
             
-            self.ranges = []
-            self.highlightedString = NSMutableAttributedString()
-            var baseString = NSMutableString()
-        
-            self.highlightedString = NSMutableAttributedString(string: string)
+            self.clean()
             
-            // go over the entire syntaxDictionairy
-            for i in 0..<self.syntaxDictionairy.collections.count {
+            self.highlight(string: unwrString_I, ticket: ticket)
+            
+            }) { () -> () in
                 
-                // validate ticket each pass, put these inside expensive loops
-                if self.ticketMan.validateTicket(ticket) == false {
-                    self.ticketMan.ripTicket(ticket)
-                    self.highlightedString = nil
-                    return
-                }
+                self.ticketMan.ripTicket(ticket: ticket)
+                completion(finished: true)
                 
-                for iB in 0..<self.syntaxDictionairy.collections[i].wordCollection.count {
-                    
-                    let currentWordToCheck = self.syntaxDictionairy.collections[i].wordCollection[iB]
-                    baseString = NSMutableString(string: string) // reset the baseString for each word, else it will have trouble will words that contain other words.
-                    
-                    while baseString.containsString(self.syntaxDictionairy.collections[i].wordCollection[iB]) {
-                        
-                        let nsRange = (baseString as NSString).rangeOfString(currentWordToCheck)
-                        let newSyntaxRange = SyntaxRange(color_I: self.syntaxDictionairy.collections[i].color, range_I: nsRange)
-                        self.ranges.append(newSyntaxRange)
-                        
-                        var replaceString = ""
-                        for _ in 0..<nsRange.length {
-                            replaceString += "§" // secret unallowed character
-                        }
-                        baseString.replaceCharactersInRange(nsRange, withString: replaceString)
-                    }
-                }
-            }
+        }
+    }
+    
+    private func clean() {
+        
+        self.ranges = []
+        self.highlightedString = NSMutableAttributedString()
+        
+    }
+    
+    private func highlight(string string_I : String, ticket ticket_I: Int ) {
+        
+        self.highlightedString = NSMutableAttributedString(string: string_I)
+        
+        // go over the entire syntaxDictionairy
+        self.syntaxDictionairy.collections.forEach { sGroup in
             
-            
-            // something went very wrong. Prevent crash
-            guard let unwrHighlightedString = self.highlightedString else {
-                self.ticketMan.ripTicket(ticket)
+            // validate ticket each pass, put these inside expensive loops
+            if self.ticketMan.validateTicket(ticket: ticket_I) == false {
+                self.highlightedString = nil
                 return
             }
+            syntaxGroupSearch(syntaxGroup: sGroup, string: string_I)
+        }
+        
+        self.addAttributes(ticket: ticket_I)
+        
+    }
+    
+    private func syntaxGroupSearch(syntaxGroup syntaxGroup_I:SyntaxGroup, string string_I:String) {
+        
+        syntaxGroup_I.wordCollection.forEach { word in
             
-            // use the saved ranged to color the full string step by step.
-            for i in 0..<self.ranges.count {
+            let baseString = NSMutableString(string: string_I)
+            
+            while baseString.containsString(word) {
                 
-                unwrHighlightedString.addAttribute(NSForegroundColorAttributeName, value: self.ranges[i].color, range: self.ranges[i].range)
+                let nsRange = (baseString as NSString).rangeOfString(word)
+                let newSyntaxRange = SyntaxRange(color_I: syntaxGroup_I.color, range_I: nsRange)
+                self.ranges.append(newSyntaxRange)
                 
-            }
-            
-            self.highlightedString = unwrHighlightedString
-            
-            
-            dispatch_sync(dispatch_get_main_queue()) { () -> Void in
-                
-                self.ticketMan.ripTicket(ticket)
-                completion(finished: true)
+                var replaceString = ""
+                for _ in 0..<nsRange.length {
+                    replaceString += "§" // secret unallowed character
+                }
+                baseString.replaceCharactersInRange(nsRange, withString: replaceString)
             }
         }
+    }
+    
+    private func addAttributes(ticket ticket_I:Int) {
+        
+        guard let unwrHighlightedString = self.highlightedString else {
+            self.ticketMan.ripTicket(ticket: ticket_I)
+            return
+        }
+        
+        ranges.forEach { range in unwrHighlightedString.addAttribute(NSForegroundColorAttributeName, value: range.color, range: range.range) }
+        self.highlightedString = unwrHighlightedString
     }
 }

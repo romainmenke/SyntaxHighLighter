@@ -24,7 +24,6 @@ class ViewController: UIViewController, UITextViewDelegate {
     
     func setUpHighLighter() {
         
-        // build a dict of words to highlight
         let redColor = UIColor(red: 0.5, green: 0.0, blue: 0.0, alpha: 1.0)
         let blueColor = UIColor(red: 0.0, green: 0.0, blue: 0.5, alpha: 1.0)
         let greenColor = UIColor(red: 0.0, green: 0.5, blue: 0.0, alpha: 1.0)
@@ -46,7 +45,7 @@ class ViewController: UIViewController, UITextViewDelegate {
         
         let currentRange = myTextView.selectedRange
         
-        syntaxHighLighter.run(myTextView.text) { (finished) -> Void in
+        syntaxHighLighter.run(string: myTextView.text) { (finished) -> Void in
             
             // check highlightedString for nil
             guard let unwrHighlightedString = self.syntaxHighLighter.highlightedString else {
@@ -63,19 +62,12 @@ class ViewController: UIViewController, UITextViewDelegate {
         }
         
     }
-    
-    // in case of weird cursor movements (only one case)
-//    func textViewDidChangeSelection(textView: UITextView) {
-//
-//        print("selection changed: \(myTextView.selectedTextRange!)")
-//        
-//    }
 
     @IBAction func editingChanged(sender: UITextField) {
         
         let currentRange = myTextfield.selectedTextRange
         
-        syntaxHighLighter.run(myTextfield.text) { (finished) -> Void in
+        syntaxHighLighter.run(string: myTextfield.text) { (finished) -> Void in
             
             // check highlightedString for nil
             guard let unwrHighlightedString = self.syntaxHighLighter.highlightedString else {

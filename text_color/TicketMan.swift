@@ -11,8 +11,8 @@ import Foundation
 
 class TicketMan {
     
-    private var ticketStack : Int = 0
-    private var ticketCounter : Int = 0
+    var ticketStack : Int = 0
+    var ticketCounter : Int = 0
     
     var ticket : Int {
         get {
@@ -21,8 +21,18 @@ class TicketMan {
             return ticketCounter
         }
     }
+}
+
+protocol LastCall {
     
-    func ripTicket(ticket : Int) {
+    var ticketStack : Int { get set }
+    var ticketCounter : Int { get set }
+    
+}
+
+extension LastCall {
+    
+    mutating func ripTicket(ticket ticket_I: Int) {
         
         ticketStack -= 1
         
@@ -31,12 +41,47 @@ class TicketMan {
         }
     }
     
-    func validateTicket(ticket: Int) -> Bool {
+    mutating func validateTicket(ticket ticket_I: Int) -> Bool {
         
-        if ticket == ticketCounter {
+        if ticket_I == ticketCounter {
             return true
         } else {
+            ripTicket(ticket: ticket_I)
             return false
         }
     }
+    
 }
+
+protocol Concurrent {
+    
+    var ticketStack : Int { get set }
+    var ticketCounter : Int { get set }
+    
+}
+
+extension Concurrent {
+    
+    func backgroundOperation(operation:()->(),completion:()->()) {
+        
+        let qualityOfServiceClass = QOS_CLASS_DEFAULT
+        let backgroundQueue = dispatch_get_global_queue(qualityOfServiceClass, 0)
+        dispatch_async(backgroundQueue) { () -> Void in
+            
+            operation()
+            
+            dispatch_sync(dispatch_get_main_queue()) { () -> Void in
+                completion()
+            }
+            
+        }
+    }
+}
+
+
+extension TicketMan : LastCall, Concurrent {
+    
+}
+
+
+
