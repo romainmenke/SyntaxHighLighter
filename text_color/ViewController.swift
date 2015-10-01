@@ -45,19 +45,9 @@ class ViewController: UIViewController, UITextViewDelegate {
         
         let currentRange = myTextView.selectedRange
         
-        syntaxHighLighter.run(string: myTextView.text) { (finished) -> Void in
+        syntaxHighLighter.run(string: myTextView.text) { (highlightedString) -> Void in
             
-            // check highlightedString for nil
-            guard let unwrHighlightedString = self.syntaxHighLighter.highlightedString else {
-                return
-            }
-            
-            // if the highlighter was slower than typing, ABORT
-            guard let textInUITextView = self.myTextfield.attributedText where textInUITextView.length == unwrHighlightedString.length else {
-                return
-            }
-            
-            self.myTextView.attributedText = self.syntaxHighLighter.highlightedString
+            self.myTextView.attributedText = highlightedString
             self.myTextView.selectedRange = currentRange
         }
         
@@ -67,19 +57,9 @@ class ViewController: UIViewController, UITextViewDelegate {
         
         let currentRange = myTextfield.selectedTextRange
         
-        syntaxHighLighter.run(string: myTextfield.text) { (finished) -> Void in
+        syntaxHighLighter.run(string: myTextfield.text) { (highlightedString) -> Void in
             
-            // check highlightedString for nil
-            guard let unwrHighlightedString = self.syntaxHighLighter.highlightedString else {
-                return
-            }
-            
-            // if the highlighter was slower than typing, ABORT
-            guard let textInUITextField = self.myTextfield.attributedText where textInUITextField.length == unwrHighlightedString.length else {
-                return
-            }
-            
-            self.myTextfield.attributedText = self.syntaxHighLighter.highlightedString
+            self.myTextfield.attributedText = highlightedString
             self.myTextfield.selectedTextRange = currentRange
         }
     }

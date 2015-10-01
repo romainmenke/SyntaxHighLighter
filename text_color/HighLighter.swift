@@ -56,7 +56,7 @@ class HighLighter {
         
     }
     
-    func run(string string_I: String?, completion: (finished: Bool) -> Void) {
+    func run(string string_I: String?, completion: (highlightedString: NSAttributedString) -> Void) {
         guard let unwrString_I = string_I where unwrString_I != "" else {
             return
         }
@@ -72,7 +72,12 @@ class HighLighter {
             }) { () -> () in
                 
                 self.ticketMan.ripTicket(ticket: ticket)
-                completion(finished: true)
+                
+                guard let hlString = self.highlightedString else {
+                    return
+                }
+                
+                completion(highlightedString: hlString)
                 
         }
     }

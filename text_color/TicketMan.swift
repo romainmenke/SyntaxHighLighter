@@ -23,16 +23,9 @@ class TicketMan {
     }
 }
 
-protocol LastCall {
+extension TicketMan {
     
-    var ticketStack : Int { get set }
-    var ticketCounter : Int { get set }
-    
-}
-
-extension LastCall {
-    
-    mutating func ripTicket(ticket ticket_I: Int) {
+    func ripTicket(ticket ticket_I: Int) {
         
         ticketStack -= 1
         
@@ -41,7 +34,7 @@ extension LastCall {
         }
     }
     
-    mutating func validateTicket(ticket ticket_I: Int) -> Bool {
+    func validateTicket(ticket ticket_I: Int) -> Bool {
         
         if ticket_I == ticketCounter {
             return true
@@ -53,14 +46,8 @@ extension LastCall {
     
 }
 
-protocol Concurrent {
-    
-    var ticketStack : Int { get set }
-    var ticketCounter : Int { get set }
-    
-}
 
-extension Concurrent {
+extension TicketMan {
     
     func backgroundOperation(operation:()->(),completion:()->()) {
         
@@ -78,10 +65,6 @@ extension Concurrent {
     }
 }
 
-
-extension TicketMan : LastCall, Concurrent {
-    
-}
 
 
 
