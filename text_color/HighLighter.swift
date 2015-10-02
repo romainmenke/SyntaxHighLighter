@@ -110,23 +110,22 @@ class HighLighter {
         
     }
     
-    private func syntaxGroupSearch(syntaxGroup syntaxGroup_I:SyntaxGroup, string string_I:String) {
+    private func syntaxGroupSearch(syntaxGroup syntaxGroup_I:SyntaxGroup, string string_I:NSString) {
         
-        syntaxGroup_I.wordCollection.forEach { word in
+        syntaxGroup_I.wordCollection.forEach { searchString in
             
-            let baseString = NSMutableString(string: string_I)
+            var searchRange : NSRange = NSRange(location: 0, length: string_I.length)
+            var lastFoundRange : NSRange = string_I.rangeOfString(searchString, options: NSStringCompareOptions.LiteralSearch, range: searchRange)
             
-            while baseString.containsString(word) {
+            while lastFoundRange.location != NSNotFound {
                 
-                let nsRange = (baseString as NSString).rangeOfString(word, options: stringCompareOptions)
-                let newSyntaxRange = SyntaxRange(color_I: syntaxGroup_I.color, range_I: nsRange)
-                self.ranges.append(newSyntaxRange)
+                let newSyntaxRange = SyntaxRange(color_I: syntaxGroup_I.color, range_I: lastFoundRange)
+                ranges.append(newSyntaxRange)
+                let searchRangeLocation = lastFoundRange.location + lastFoundRange.length
+                let searchRangeLength = string_I.length - searchRangeLocation
+                searchRange = NSRange(location: searchRangeLocation, length: searchRangeLength)
                 
-                var replaceString = ""
-                for _ in 0..<nsRange.length {
-                    replaceString += "§" // secret unallowed character
-                }
-                baseString.replaceCharactersInRange(nsRange, withString: replaceString)
+                lastFoundRange = string_I.rangeOfString(searchString, options: NSStringCompareOptions.LiteralSearch, range: searchRange)
             }
         }
     }
