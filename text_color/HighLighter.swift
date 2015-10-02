@@ -47,6 +47,8 @@ class HighLighter {
     private var ranges : [SyntaxRange] = [] // array of ranges and colors
     private var ticketMan = TicketMan() // prevent duplicate execution
     
+    var stringCompareOptions : NSStringCompareOptions = NSStringCompareOptions.LiteralSearch
+    
     var highlightedString : NSMutableAttributedString? // the resulting string
     var syntaxDictionairy : SyntaxDictionairy // the collection of words and colors
     
@@ -116,7 +118,7 @@ class HighLighter {
             
             while baseString.containsString(word) {
                 
-                let nsRange = (baseString as NSString).rangeOfString(word)
+                let nsRange = (baseString as NSString).rangeOfString(word, options: stringCompareOptions)
                 let newSyntaxRange = SyntaxRange(color_I: syntaxGroup_I.color, range_I: nsRange)
                 self.ranges.append(newSyntaxRange)
                 
